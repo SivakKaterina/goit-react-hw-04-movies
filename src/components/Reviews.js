@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getReviewsInfo } from "../services/fetchApi";
 
-const Reviews = () => {
+const Reviews = ({ match }) => {
   const history = useHistory();
   console.log("cast", history);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    getReviewsInfo(history.location.state.id).then((resp) =>
+    getReviewsInfo(match.params.id).then((resp) =>
       setReviews(resp.data.results)
     );
-  }, [history.location.state.id]);
+  }, [match.params.id]);
 
   return (
     <>

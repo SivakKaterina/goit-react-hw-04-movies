@@ -26,7 +26,7 @@ function getFilmsByQuery(query) {
 
 function getCastInfo(id) {
   return axios.get(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=5a4c89ffe5846030bcf4fa2ac8aedb51d0feea1`
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=5a4c89ffe5846030bcf4fa2ac8aedb51&language=en-US`
   );
 }
 

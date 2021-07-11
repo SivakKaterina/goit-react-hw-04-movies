@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getCastInfo } from "../services/fetchApi";
 
-const Cast = () => {
+const Cast = ({ match }) => {
   const history = useHistory();
-  console.log("cast", history);
+  console.log("history", history);
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    getCastInfo(history.location.state.id).then((resp) =>
-      setCast(resp.data.cast)
-    );
-  }, [history.location.state.id]);
+    getCastInfo(match.params.id).then((resp) => setCast(resp.data.cast));
+  }, [match.params.id]);
 
   return (
     <>

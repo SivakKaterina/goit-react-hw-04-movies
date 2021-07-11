@@ -17,18 +17,22 @@ class MovieDetailsPage extends Component {
   };
 
   async componentDidMount() {
-    if (this.props.location.state?.id !== undefined) {
-      const id = this.props.location.state.id;
-      const response = await getFilmById(id);
-      this.setState({ film: response.data });
-    }
-    // console.log(this.props);
+    // if (this.props.location.state?.id !== undefined) {
+    const id = this.props.match.params.id;
+    const response = await getFilmById(id);
+    this.setState({ film: response.data });
+    // }
+    // const id = this.props.match.params.id
   }
 
   handleGoBack = () => {
-    this.props.history.push(this.props.location.state.from, {
-      query: this.props.location.state.query,
+    const { history, location } = this.props;
+    history.push(location?.state?.from || "/", {
+      query: this.props.location.state?.query,
     });
+    // this.props.history.push(this.props.location.state.from,
+
+    // );
   };
 
   render() {
@@ -40,7 +44,11 @@ class MovieDetailsPage extends Component {
         </button>
 
         <h1>{film.title}</h1>
-        <img src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}></img>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${
+            film.poster_path || film.profile_path
+          }`}
+        ></img>
         <p>{film.overview}</p>
         <ul>
           <li>

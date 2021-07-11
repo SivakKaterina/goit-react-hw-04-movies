@@ -14,8 +14,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/movies" component={MoviesPage} />
         <Route path="/movies/:id" component={MovieDetailsPage} />
+        <Redirect to={{ pathname: "/" }} />
       </Switch>
-      <Redirect to={{ pathname: "/" }} />
     </>
   );
 }
